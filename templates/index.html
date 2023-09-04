@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRo62sQ0qgyc2Y0gpodULLtS2ClLatGwTB50jRCMNsbSj4LddhOylOhu-iC9lSkBASuM&usqp=CAU") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      
+
+    }
+    h1 {
+      text-align: center;
+      font-family: sans-serif;
+     
+      color: black;
+      padding: 20px;
+    }
+    form {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+      box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.15);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: rgba(9, 70, 117, 0.707);
+      color: #0e0e0e;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: rgba(20, 63, 182, 0.87);
+    }
+  </style>
+</head>
+<body>
+  <h1>Gadget Consultant</h1>
+  <form action="{{ url_for('advice') }}" method="post">
+    <label for="prod">Select the Product you are looking for?</label><br>
+    <select name="prod" id="prod">
+      <option value="mobile">Mobile</option>
+      <option value="Laptop">Laptop</option>
+      <option value="TV">Television</option>
+    </select>
+    
+   <br> <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

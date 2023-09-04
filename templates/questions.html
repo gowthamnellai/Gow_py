@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: url("https://img.freepik.com/free-vector/gaming-computer-device-seamless-pattern_1284-51634.jpg?size=626&ext=jpg") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    h1 {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.64);
+      color: white;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 50px;
+      border: 2px solid #1a0202;
+      border-radius: 5px;
+      background-color: rgba(239, 239, 239, 0.8); /* Add some transparency to the form */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: large;
+      color: #1a0202;
+      
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #110101;
+      border-radius: 3px;
+      font-size: 16px;
+    }
+    input[type="submit"] {
+      display: block;
+      width: 110%;
+      padding: 12px;
+      border: none;
+      border-radius: 3px;
+      background-color: #4caf4fdd;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+      transform: scale(0.89);
+    }
+    .next-button {
+      display: block;
+      width: 110%;
+      padding: 12px;
+      border: none;
+      border-radius: 3px;
+      background-color: #5084b5;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .next-button:hover {
+      background-color: #006ac1;
+      transform: scale(0.9);
+    }
+  </style>
+  <script>
+    function showNextQuestion(currentQuestion) {
+      var currentQuestionDiv = document.getElementById(currentQuestion);
+      currentQuestionDiv.style.display = 'none';
+      var nextQuestionIndex = parseInt(currentQuestion.replace("question", "")) + 1;
+      var nextQuestionDiv = document.getElementById("question" + nextQuestionIndex);
+      nextQuestionDiv.style.display = 'block';
+    }
+  </script>
+</head>
+<body>
+  <h1>Answer the Questions</h1>
+  <form action="{{ url_for('show_questions', prod=prod) }}" method="post">
+    {% for question in questions %}
+      <div id="question{{ loop.index }}" {% if loop.index != 1 %}style="display: none;"{% endif %}>
+        <label for="answer{{ loop.index }}">{{ question }}</label>
+        <input type="text" name="answer{{ loop.index }}" required>
+        <br>
+        {% if loop.index != questions|length %}
+        <br>
+          <button type="button" class="next-button" onclick="showNextQuestion('question{{ loop.index }}')">Next</button>
+        {% else %}
+        <br>
+          <input type="submit" value="Submit">
+        {% endif %}
+      </div>
+    {% endfor %}
+  </form>
+</body>
+</html>
